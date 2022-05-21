@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS game;
 CREATE DATABASE game;
 USE game;
 
@@ -17,9 +18,18 @@ CREATE TABLE scoreboard (
     PRIMARY KEY (id_score),
     FOREIGN KEY (id_players) REFERENCES players(id_players)
 );
--- Dummy data for testing
 
-/*	insert into players (username, birthdate, password) values ('shamments0', '2000-11-28', 'pIYDD7sio');
+INSERT INTO players (username, birthdate, password) 
+	VALUES ('MoW2003', '2003-05-07', 'passw'),
+		   ('DEADPOOL', '2003-01-01', 'passs');
+           
+INSERT INTO scoreboard (id_players, time, score)
+	VALUES (1, '2021-02-12 09:03:09', 20),
+		   (2, '2021-06-11 16:22:29', 11);
+		   
+
+/*	-- Dummy data for testing
+	insert into players (username, birthdate, password) values ('shamments0', '2000-11-28', 'pIYDD7sio');
 	insert into players (username, birthdate, password) values ('kstangroom1', '2000-09-24', 'h9U9o6');
 	insert into players (username, birthdate, password) values ('jberthome2', '2001-06-12', '5f5luT');
 	insert into players (username, birthdate, password) values ('bbradbrook3', '2002-03-18', 'rOcMJT8Pyan');
@@ -39,7 +49,7 @@ CREATE TABLE scoreboard (
 	insert into scoreboard (id_players, time, score) values (9, '2021-06-09 19:26:11', 20);
 	insert into scoreboard (id_players, time, score) values (7, '2022-01-03 07:48:28', 18);
 	insert into scoreboard (id_players, time, score) values (7, '2021-01-23 20:34:32', 17);
-	insert into scoreboard (id_players, time, score) values (3, '2021-04-10 11:47:29', 18);	*/
+	insert into scoreboard (id_players, time, score) values (3, '2021-04-10 11:47:29', 18); */
     
     
     
