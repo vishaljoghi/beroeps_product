@@ -11,10 +11,8 @@ public class Menu {
                             "3. Leaderboard",
                             "4. Exit"
         };
-        Integer option;
+        int option;
         while (true) {
-            option = null;
-            //System.out.println(option);   
             Scanner answer = new Scanner(System.in);
             for (String menu : options)
             System.out.println(menu);
