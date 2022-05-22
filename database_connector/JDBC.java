@@ -7,14 +7,16 @@ public class JDBC {
         Connection conn = getConnection();
         try {
             Statement statement = conn.createStatement();
-            ResultSet results =  statement.executeQuery("SELECT * FROM players;");
-            //System.out.println();
+            ResultSet results =  statement.executeQuery("SELECT username, score FROM scoreboard " 
+                                    + "INNER JOIN players ON scoreboard.id_players=players.id_players;");
+            System.out.println();
             while(results.next()) {
-                String id = results.getString("id_players");
+                //String id = results.getString("id_players");
                 String username = results.getString("username");
-                String password = results.getString("password");
-                System.out.println(id + " - " + username + " - " + password);
+                String score = results.getString("score");
+                System.out.println(username + " - " + score);
             }
+            System.out.println();
         } catch (SQLException e) {
             System.out.println("Could not retrieve data from the database " + e.getMessage());
         }
