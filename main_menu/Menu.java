@@ -20,18 +20,21 @@ public class Menu {
             try {option = answer.nextInt();
                 switch (option) {
                     case 1:
-                    //System.out.println("test 1");
-                        JDBC conn = new JDBC();
-                        conn.printUsers();
+                        System.out.println("test 1");
                         break;
                     case 2:
                         System.out.println("test 2");
                         break;
                     case 3:
-                        System.out.println("test 3");
+                        JDBC conn1 = new JDBC();
+                        conn1.printUsers();
                         break;
                     case 4:
-                        System.out.println("test 4");
+                        System.out.println();
+                        System.out.println("Thank you for playing!");
+                        Thread.sleep(5000);
+                        System.out.println();
+                        System.exit(option);
                         break;
                 }
                 
