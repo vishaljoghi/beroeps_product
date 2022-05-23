@@ -9,7 +9,8 @@ public class Menu {
         String[] options = {"1. Login & Play",
                             "2. Register",
                             "3. Leaderboard",
-                            "4. Exit"
+                            "4. Credits",
+                            "5. Exit"
         };
         int option;
         while (true) {
@@ -30,6 +31,9 @@ public class Menu {
                         conn1.printUsers();
                         break;
                     case 4:
+                        insertCredits();
+                        break;
+                    case 5:
                         System.out.println();
                         System.out.println("Thank you for playing!");
                         Thread.sleep(5000);
@@ -42,5 +46,14 @@ public class Menu {
                 System.out.println("Pls try again");
             }
         }
+    }
+    static void insertCredits() {
+        System.out.println();
+        System.out.println("          Developers           ");
+        System.out.println("-------------------------------");
+        System.out.println("Cheung   Shahrukh   SE/1121/062");
+        System.out.println("Vishal   Joghi      BI/1121/019");
+        System.out.println("Kevin    Bonoo      BI/1121/004");
+        System.out.println();
     }
 }
