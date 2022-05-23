@@ -1,63 +1,16 @@
-package main_menu;
+public void userData() {
+    try (Scanner userData = new Scanner(System.in)) {
+        System.out.print("username: ");
+        String username = userData.nextLine();
+        System.out.print("birthdate: ");
+        String birthdate = userData.nextLine();
+        System.out.print("password: ");
+        String password = userData.nextLine();
 
-import java.util.Scanner;
+        JDBC data = new JDBC();
+        data.insertUsers(username, birthdate, password);
 
-import database_connector.JDBC;
-
-public class Menu {
-    public void mainMenu() {
-        String[] options = {"1. Login & Play",
-                            "2. Register",
-                            "3. Leaderboard",
-                            "4. Exit"
-        };
-        int option;
-        while (true) {
-            Scanner answer = new Scanner(System.in);
-            for (String menu : options)
-            System.out.println(menu);
-            System.out.print("Choose your option: ");
-            try {
-                option = answer.nextInt();
-                switch (option) {
-                    case 1:
-                        System.out.println("test 1");
-                        break;
-                    case 2:
-                        userData();
-                        break;
-                    case 3:
-                        JDBC conn = new JDBC();
-                        conn.printUsers();
-                        break;
-                    case 4:
-                        System.out.println();
-                        System.out.println("Thank you for playing!");
-                        Thread.sleep(5000);
-                        System.out.println();
-                        System.exit(option);
-                        break;
-                }
-                
-            } catch (Exception e) {
-                System.out.println("Pls try again");
-            }
-        }
-    }
-    public void userData() {
-        try (Scanner userData = new Scanner(System.in)) {
-            System.out.print("username: ");
-            String username = userData.nextLine();
-            System.out.print("birthdate: ");
-            String birthdate = userData.nextLine();
-            System.out.print("password: ");
-            String password = userData.nextLine();
-
-            JDBC data = new JDBC();
-            data.insertUsers(username, birthdate, password);
-            
-        } catch (Exception e) {
-            System.out.println("Please try again.");
-        }
+    } catch (Exception e) {
+        System.out.println("Please try again.");
     }
 }
