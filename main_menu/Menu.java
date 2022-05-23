@@ -36,11 +36,7 @@ public class Menu {
                         printCredits();
                         break;
                     case 5:
-                        System.out.println();
-                        System.out.println("Thank you for playing!");
-                        Thread.sleep(5000);
-                        System.out.println();
-                        System.exit(option);
+                        exitMenu();
                         break;
                 }
                 
@@ -66,5 +62,12 @@ public class Menu {
         }
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
+    }
+    static void exitMenu() {
+        System.out.println();
+        System.out.println("Thank you for playing!");
+        System.out.println();
+        //Thread.sleep(2000);
+        System.exit(0);
     }
 }
