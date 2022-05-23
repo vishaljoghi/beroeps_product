@@ -7,8 +7,7 @@ public void insertUsers(String username, String birthdate, String password) thro
         // String password;
         // String username;
         // String birthdate;
-        String query = ("INSERT INTO players "
-                        + "(username, birtdate, password) "
+        String query = ("INSERT INTO players (username, birthdate, password) "
                         + "VALUES ("+ username + birthdate + password +")");
         statement.executeUpdate(query);
         System.out.println("Registration successful.");
