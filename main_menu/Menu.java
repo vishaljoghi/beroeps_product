@@ -23,7 +23,7 @@ public class Menu {
             try {option = answer.nextInt();
                 switch (option) {
                     case 1:
-                        System.out.println("test 1");
+                        System.out.println("Coming soon...");
                         break;
                     case 2:
                         System.out.println("test 2");
