@@ -6,11 +6,13 @@ import database_connector.JDBC;
 
 public class Menu {
     public void mainMenu() {
-        String[] options = {"1. Login & Play",
-                            "2. Register",
-                            "3. Leaderboard",
-                            "4. Credits",
-                            "5. Exit"
+        String[] options = {
+            " ",
+            "1. Login & Play",
+            "2. Register",
+            "3. Leaderboard",
+            "4. Credits",
+            "5. Exit"
         };
         int option;
         while (true) {
@@ -31,7 +33,7 @@ public class Menu {
                         conn1.printUsers();
                         break;
                     case 4:
-                        insertCredits();
+                        printCredits();
                         break;
                     case 5:
                         System.out.println();
@@ -43,17 +45,26 @@ public class Menu {
                 }
                 
             } catch (Exception e) {
-                System.out.println("Pls try again");
+                System.out.println("Pls enter an option number.");
             }
         }
     }
-    static void insertCredits() {
-        System.out.println();
-        System.out.println("          Developers           ");
-        System.out.println("-------------------------------");
-        System.out.println("Cheung   Shahrukh   SE/1121/062");
-        System.out.println("Vishal   Joghi      BI/1121/019");
-        System.out.println("Kevin    Bonoo      BI/1121/004");
-        System.out.println();
+    static void printCredits() {
+        String[] credits = {
+            " ",
+            "        ~ Developers ~        ",
+            "                              ",
+            "Cheung  Shahrukh   SE/1121/062",
+            "Joghi   Vishal     BI/1121/019",
+            "Bonoo   Kevin      BI/1121/004",
+            "Kaman   Keano      BI/1121/---",
+            " "
+        };
+        Scanner scan = new Scanner(System.in);
+        for (String i : credits) {
+            System.out.println(i);
+        }
+        System.out.print("Press 'Enter' to return.");
+        scan.nextLine();
     }
 }
