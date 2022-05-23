@@ -26,7 +26,7 @@ public class Menu {
                         System.out.println("Coming soon...");
                         break;
                     case 2:
-                        System.out.println("test 2");
+                        System.out.println("Work in progress...");
                         break;
                     case 3:
                         JDBC conn1 = new JDBC();
