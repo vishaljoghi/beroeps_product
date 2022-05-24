@@ -1,15 +1,16 @@
 package main_menu;
 
+import java.sql.SQLException;
 import java.util.Scanner;
-
 import database_connector.JDBC;
 
 public class Menu {
     public void mainMenu() {
         String[] options = {
+            "Memory",
             " ",
             "1. Login & Play",
-            "2. Register",
+            "2. Account",
             "3. Leaderboard",
             "4. Credits",
             "5. Exit"
@@ -19,18 +20,18 @@ public class Menu {
             Scanner answer = new Scanner(System.in);
             for (String menu : options)
             System.out.println(menu);
+
             System.out.print("Choose your option: ");
             try {option = answer.nextInt();
                 switch (option) {
                     case 1:
-                        System.out.println("Coming soon...");
+                        playGame();
                         break;
                     case 2:
-                        System.out.println("Work in progress...");
+                        manageAccount();
                         break;
                     case 3:
-                        JDBC conn1 = new JDBC();
-                        conn1.printUsers();
+                        printScoreboard();
                         break;
                     case 4:
                         printCredits();
@@ -45,6 +46,44 @@ public class Menu {
             }
         }
     }
+    static void playGame () {
+        System.out.println("Coming soon...");
+        System.out.println();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Press 'Enter' to return.");
+        scan.nextLine();
+    }
+
+    static void manageAccount() {
+        String[] subMenu = {
+            " ",
+            "1. Create Account",
+            "2. Edit Account",
+            " "
+        };
+        for (String i : subMenu) {
+            System.out.println(i);
+        }
+        // System.out.println("Work in progress...");
+        // System.out.println();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Press 'Enter' to return.");
+        scan.nextLine();
+    }
+
+    static void printScoreboard() throws SQLException {
+        System.out.println("  ~ Leaderboard ~");
+
+        JDBC conn1 = new JDBC();
+        conn1.printUsers();
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Press 'Enter' to return.");
+        scan.nextLine();
+    }
+
     static void printCredits() {
         String[] credits = {
             " ",
@@ -56,17 +95,23 @@ public class Menu {
             "Kaman   Keano      BI/1121/---",
             " "
         };
-        Scanner scan = new Scanner(System.in);
         for (String i : credits) {
             System.out.println(i);
         }
+        Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
     }
+
     static void exitMenu() {
-        System.out.println();
-        System.out.println("Thank you for playing!");
-        System.out.println();
+        String[] exitMessage = {
+            " ",
+            "Thank you for playing!",
+            " "
+        };
+        for (String i : exitMessage) {
+            System.out.println(i);
+        }
         //Thread.sleep(2000);
         System.exit(0);
     }
