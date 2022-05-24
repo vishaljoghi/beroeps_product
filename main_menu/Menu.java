@@ -45,7 +45,25 @@ public class Menu {
                 }
                 
             } catch (Exception e) {
-                System.out.println("Pls enter an option number.");
+                String[] error = {
+                    "       _   ___   _ ",
+                    "      | | |__ \\ | |",
+                    "      | |   / / | |",
+                    "      |_|  |_|  |_|",
+                    "      (_)  (_)  (_)",
+                    " ",
+                    "Pls enter an option number.",
+                    " "
+                };
+                for (String i : error) {
+                    System.out.println(i);
+                }
+                // System.out.println("Pls enter an option number.");
+                // System.out.println();
+
+                Scanner scan = new Scanner(System.in);
+                System.out.print("Press 'Enter' to return.");
+                scan.nextLine();
             }
         }
     }
@@ -83,7 +101,14 @@ public class Menu {
     }
 
     static void printScoreboard() throws SQLException {
-        System.out.println("  ~ Leaderboard ~");
+        String[] scoreboard = {
+            " ",
+            "  ~ Leaderboard ~"
+        };
+        for (String i : scoreboard) {
+            System.out.println(i);
+        }
+        // System.out.println("  ~ Leaderboard ~");
 
         JDBC conn1 = new JDBC();
         conn1.printUsers();
@@ -142,6 +167,7 @@ public class Menu {
         // Thread.sleep(5000);
 
         String[] memory = {
+            " ",
             " ",
             " _ __ ___   ___ _ __ ___   ___  _ __ _   _",
             "| '_ ` _ \\ / _ \\ '_ ` _ \\ / _ \\| '__| | | |",
