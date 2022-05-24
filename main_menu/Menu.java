@@ -5,15 +5,18 @@ import java.util.Scanner;
 import database_connector.JDBC;
 
 public class Menu {
-    public void mainMenu() {
+    public void mainMenu() throws InterruptedException {
+        welcomeMessage();
+
         String[] options = {
-            "Memory",
-            " ",
+            "      Menu ",
+            " --------------",
             "1. Login & Play",
             "2. Account",
             "3. Leaderboard",
             "4. Credits",
-            "5. Exit"
+            "5. Exit",
+            " "
         };
         int option;
         while (true) {
@@ -47,8 +50,14 @@ public class Menu {
         }
     }
     static void playGame () {
-        System.out.println("Coming soon...");
-        System.out.println();
+        String[] message = {
+            "Coming soon..."
+        };
+        for (String i : message) {
+            System.out.println(i);
+        }
+        // System.out.println("Coming soon...");
+        // System.out.println();
 
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
@@ -114,5 +123,51 @@ public class Menu {
         }
         //Thread.sleep(2000);
         System.exit(0);
+    }
+
+    static void welcomeMessage() throws InterruptedException {
+        // String[] welcome = {
+        //     " ",
+        //     "              _",
+        //     "__      _____| | ___ ___  _ __ ___   ___",
+        //     "\\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\",
+        //     " \\ V  V /  __/ | (_| (_) | | | | | |  __/",
+        //     "  \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|",
+        //     " ",
+        //     " "
+        // };
+        // for (String a : welcome) {
+        //     System.out.println(a);
+        // }
+        // Thread.sleep(5000);
+
+        String[] memory = {
+            " ",
+            " _ __ ___   ___ _ __ ___   ___  _ __ _   _",
+            "| '_ ` _ \\ / _ \\ '_ ` _ \\ / _ \\| '__| | | |",
+            "| | | | | |  __/ | | | | | (_) | |  | |_| | ",
+            "|_| |_| |_|\\___|_| |_| |_|\\___/|_|   \\__, |",
+            "                                     |___/",
+            " ",
+            " "
+        };
+        for (String b : memory) {
+            System.out.println(b);
+        }
+        Thread.sleep(1500);
+        
+        String[] impossible = {
+            " _                               _ _     _",
+            "(_)_ __ ___  _ __   ___  ___ ___(_) |__ | | ___",
+            "| | '_ ` _ \\| '_ \\ / _ \\/ __/ __| | '_ \\| |/ _ \\",
+            "| | | | | | | |_) | (_) \\__ \\__ \\ | |_) | |  __/ ",
+            "|_|_| |_| |_| .__/ \\___/|___/___/_|_.__/|_|\\___|",
+            "            |_|",
+            " "
+        };
+        for (String c : impossible) {
+            System.out.println(c);
+        }
+        Thread.sleep(2000);
     }
 }
