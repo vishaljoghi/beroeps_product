@@ -1,11 +1,40 @@
 package test;
 
+import java.sql.SQLException;
+
+import database_connector.JDBC;
+import main_menu.SubMenu;
+
 public class test {
     public static void main(String[] args) {
 
-        int[][] mdarray = {{12,24,42},{56,43,73}};
+        // int[][] i = {{43,43,434,53},
+        //              {45,23423,5,54,54},
+        //              {3,243,34,23,}};
 
-        System.out.println(mdarray[0][0]);
+
+        // {3,243,34,23,}
+        // {45,23423,5,54,54}
+        // // {43,43,434,53}
+        // System.out.println(i[0][0]);
+
+        // // SubMenu i = new SubMenu();
+        SubMenu.userData();
+
+
+    //     JDBC i = new JDBC();
+    //     try {
+    //         i.insertUsers();
+    //     } catch (SQLException e) {
+    //         // TODO Auto-generated catch block
+    //         e.printStackTrace();
+    //     }
+        
+        
+
+        // int[][] mdarray = {{12,24,42},{56,43,73}};
+
+        // System.out.println(mdarray[0][0]);
    
         // int[] array = {23,45,76,23,67};
 
