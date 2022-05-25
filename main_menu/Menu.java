@@ -80,12 +80,13 @@ public class Menu {
 
         int option;
         System.out.print("Choose your option: ");
-        Scanner scan = new Scanner(System.in);
+        Scanner answer = new Scanner(System.in);
         try {
-            option = scan.nextInt();
+            option = answer.nextInt();
             switch (option) {
                 case 1:
                     System.out.println("Work in progress!!");
+                    userData();
                     enterReturn();
                     break;
                 case 2:
@@ -104,6 +105,43 @@ public class Menu {
             
         } catch (Exception e) {
             menuExeption();
+        }
+    }
+
+    public static void userData() {
+        try (Scanner userData = new Scanner(System.in)) {
+            String[] i = {
+                "Usernames need to be unique,",
+                "so be creative.",
+                "Username: ",
+                "Please use the following",
+                "  format: yyyy-mm-dd",
+                "Birthdate: ",
+                "Tips for making a stong password:",
+                "use Caps, Numbers & Symbols.",
+                "Password: ",
+                " "
+            };
+            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
+            System.out.print(i[0] + "\r\n" + i[1] + "\r\n" + i[9] + "\r\n" 
+                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[2]);
+            String username = userData.nextLine();
+
+            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
+            System.out.print(i[3] + "\r\n" + i[4] + "\r\n" + i[9] + "\r\n" 
+                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[5]);
+            String birthdate = userData.nextLine();
+            
+            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
+            System.out.print(i[6] + "\r\n" + i[7] + "\r\n" + i[9] + "\r\n" 
+                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[8]);
+            String password = userData.nextLine();
+    
+            JDBC data = new JDBC();
+            data.insertUsers(username, birthdate, password);
+    
+        } catch (Exception e) {
+            System.out.println("Please try again.");
         }
     }
 
