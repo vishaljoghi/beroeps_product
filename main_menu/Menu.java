@@ -31,7 +31,8 @@ public class Menu {
                         playGame();
                         break;
                     case 2:
-                        manageAccount();
+                        SubMenu a = new SubMenu();
+                        a.manageAccount();
                         break;
                     case 3:
                         printScoreboard();
@@ -60,89 +61,6 @@ public class Menu {
         // System.out.println();
 
         enterReturn();
-    }
-
-    static void manageAccount() {
-        String[] subMenu = {
-            " ",
-            "   Manage Account",
-            "-------------------",
-            "1. Create Account",
-            "2. Edit Account",
-            "3. Forgot Acc",
-            "4. Return",
-            " ",
-            " "
-        };
-        for (String i : subMenu) {
-            System.out.println(i);
-        }
-
-        int option;
-        System.out.print("Choose your option: ");
-        Scanner answer = new Scanner(System.in);
-        try {
-            option = answer.nextInt();
-            switch (option) {
-                case 1:
-                    System.out.println("Work in progress!!");
-                    userData();
-                    enterReturn();
-                    break;
-                case 2:
-                    System.out.println("Work in progress!!");
-                    enterReturn();
-                    break;
-                case 3:
-                    lostAcc();
-                    enterReturn();
-                    manageAccount();
-                    break;
-                case 4:
-                    System.out.println();
-                    break;
-            }
-            
-        } catch (Exception e) {
-            menuExeption();
-        }
-    }
-
-    public static void userData() {
-        try (Scanner userData = new Scanner(System.in)) {
-            String[] i = {
-                "Usernames need to be unique,",
-                "so be creative.",
-                "Username: ",
-                "Please use the following",
-                "  format: yyyy-mm-dd",
-                "Birthdate: ",
-                "Tips for making a stong password:",
-                "use Caps, Numbers & Symbols.",
-                "Password: ",
-                " "
-            };
-            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
-            System.out.print(i[0] + "\r\n" + i[1] + "\r\n" + i[9] + "\r\n" 
-                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[2]);
-            String username = userData.nextLine();
-
-            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
-            System.out.print(i[3] + "\r\n" + i[4] + "\r\n" + i[9] + "\r\n" 
-                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[5]);
-            String birthdate = userData.nextLine();
-            
-            System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
-            System.out.print(i[6] + "\r\n" + i[7] + "\r\n" + i[9] + "\r\n" 
-                            + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[8]);
-            String password = userData.nextLine();
-    
-            JDBC data = new JDBC();
-            data.insertUsers(username, birthdate, password);
-    
-        } catch (Exception e) {
-            System.out.println("Please try again.");
-        }
     }
 
     static void printScoreboard() throws SQLException {
@@ -259,21 +177,5 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
-    }
-
-    static void lostAcc() {
-        String[] message = {
-            " ",
-            "       __",
-            "  _   / /",
-            " (_) | |   Pls make another",
-            "  _  | |       account.",
-            " (_) | |      ----------",
-            "      \\_\\",
-            " "
-        };
-        for (String i : message) {
-            System.out.println(i);
-        }
     }
 }
