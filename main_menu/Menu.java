@@ -45,25 +45,7 @@ public class Menu {
                 }
                 
             } catch (Exception e) {
-                String[] error = {
-                    "       _   ___   _ ",
-                    "      | | |__ \\ | |",
-                    "      | |   / / | |",
-                    "      |_|  |_|  |_|",
-                    "      (_)  (_)  (_)",
-                    " ",
-                    "Pls enter an option number.",
-                    " "
-                };
-                for (String i : error) {
-                    System.out.println(i);
-                }
-                // System.out.println("Pls enter an option number.");
-                // System.out.println();
-
-                Scanner scan = new Scanner(System.in);
-                System.out.print("Press 'Enter' to return.");
-                scan.nextLine();
+                menuExeption();
             }
         }
     }
@@ -77,27 +59,52 @@ public class Menu {
         // System.out.println("Coming soon...");
         // System.out.println();
 
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Press 'Enter' to return.");
-        scan.nextLine();
+        enterReturn();
     }
 
     static void manageAccount() {
         String[] subMenu = {
             " ",
+            "   Manage Account",
+            "-------------------",
             "1. Create Account",
             "2. Edit Account",
+            "3. Forgot Acc",
+            "4. Return",
+            " ",
             " "
         };
         for (String i : subMenu) {
             System.out.println(i);
         }
-        // System.out.println("Work in progress...");
-        // System.out.println();
 
+        int option;
+        System.out.print("Choose your option: ");
         Scanner scan = new Scanner(System.in);
-        System.out.print("Press 'Enter' to return.");
-        scan.nextLine();
+        try {
+            option = scan.nextInt();
+            switch (option) {
+                case 1:
+                    System.out.println("Work in progress!!");
+                    enterReturn();
+                    break;
+                case 2:
+                    System.out.println("Work in progress!!");
+                    enterReturn();
+                    break;
+                case 3:
+                    lostAcc();
+                    enterReturn();
+                    manageAccount();
+                    break;
+                case 4:
+                    System.out.println();
+                    break;
+            }
+            
+        } catch (Exception e) {
+            menuExeption();
+        }
     }
 
     static void printScoreboard() throws SQLException {
@@ -113,9 +120,7 @@ public class Menu {
         JDBC conn1 = new JDBC();
         conn1.printUsers();
 
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Press 'Enter' to return.");
-        scan.nextLine();
+        enterReturn();
     }
 
     static void printCredits() {
@@ -132,9 +137,7 @@ public class Menu {
         for (String i : credits) {
             System.out.println(i);
         }
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Press 'Enter' to return.");
-        scan.nextLine();
+        enterReturn();
     }
 
     static void exitMenu() {
@@ -195,5 +198,44 @@ public class Menu {
             System.out.println(c);
         }
         Thread.sleep(2000);
+    }
+
+    static void menuExeption() {
+        String[] error = {
+            "       _   ___   _ ",
+            "      | | |__ \\ | |",
+            "      | |   / / | |",
+            "      |_|  |_|  |_|",
+            "      (_)  (_)  (_)",
+            " ",
+            "Pls enter an option number.",
+            " "
+        };
+        for (String i : error) {
+            System.out.println(i);
+        }
+        enterReturn();
+    }
+
+    static void enterReturn() {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Press 'Enter' to return.");
+        scan.nextLine();
+    }
+
+    static void lostAcc() {
+        String[] message = {
+            " ",
+            "       __",
+            "  _   / /",
+            " (_) | |   Pls make another",
+            "  _  | |       account.",
+            " (_) | |      ----------",
+            "      \\_\\",
+            " "
+        };
+        for (String i : message) {
+            System.out.println(i);
+        }
     }
 }
