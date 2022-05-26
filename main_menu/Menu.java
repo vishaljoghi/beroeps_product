@@ -1,13 +1,14 @@
 package main_menu;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import database_connector.JDBC;
 
 public class Menu {
     public void mainMenu() throws InterruptedException {
         welcomeMessage();
-
         String[] options = {
             "      Menu ",
             " --------------",
@@ -20,12 +21,13 @@ public class Menu {
         };
         int option;
         while (true) {
-            Scanner answer = new Scanner(System.in);
-            for (String menu : options)
-            System.out.println(menu);
-
+            for (String menu : options) {
+                System.out.println(menu);
+            }
             System.out.print("Choose your option: ");
-            try {option = answer.nextInt();
+            Scanner answer = new Scanner(System.in);
+            try {
+                option = answer.nextInt();
                 switch (option) {
                     case 1:
                         playGame();
@@ -45,8 +47,18 @@ public class Menu {
                         break;
                 }
                 
-            } catch (Exception e) {
+            }
+            catch (InputMismatchException e) {
+                System.out.println("Exeption: " + e);
                 menuExeption();
+            }
+            // catch (NoSuchElementException e) {
+            //     System.out.println("Exeption: " + e);  //NoElement test
+            //     exitMenu();
+            // }
+            catch (Exception e) {
+                System.out.println("Exeption in mainMenu: " + e);
+                enterReturn();
             }
         }
     }
@@ -57,9 +69,6 @@ public class Menu {
         for (String i : message) {
             System.out.println(i);
         }
-        // System.out.println("Coming soon...");
-        // System.out.println();
-
         enterReturn();
     }
 
@@ -71,11 +80,8 @@ public class Menu {
         for (String i : scoreboard) {
             System.out.println(i);
         }
-        // System.out.println("  ~ Leaderboard ~");
-
-        JDBC conn1 = new JDBC();
-        conn1.printUsers();
-
+        JDBC conn = new JDBC();
+        conn.printUsers();
         enterReturn();
     }
 
@@ -96,7 +102,7 @@ public class Menu {
         enterReturn();
     }
 
-    static void exitMenu() {
+    static void exitMenu() throws InterruptedException {
         String[] exitMessage = {
             " ",
             "Thank you for playing!",
@@ -105,7 +111,7 @@ public class Menu {
         for (String i : exitMessage) {
             System.out.println(i);
         }
-        //Thread.sleep(2000);
+        Thread.sleep(2000);
         System.exit(0);
     }
 
@@ -139,8 +145,7 @@ public class Menu {
         for (String b : memory) {
             System.out.println(b);
         }
-        Thread.sleep(1500);
-        
+        Thread.sleep(2000);
         String[] impossible = {
             " _                               _ _     _",
             "(_)_ __ ___  _ __   ___  ___ ___(_) |__ | | ___",
@@ -173,7 +178,7 @@ public class Menu {
         enterReturn();
     }
 
-    static void enterReturn() {
+    public static void enterReturn() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
