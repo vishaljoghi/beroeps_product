@@ -20,36 +20,26 @@ CREATE TABLE scoreboard (
 );
 
 INSERT INTO players (username, birthdate, password) 
-	VALUES ('MoW2003', '2003-05-07', 'passw'),
-		   ('DEADPOOL', '2003-01-01', 'passs');
+	VALUES ('MoW2003', '2003-05-07', 'password'),
+		   ('DEADP00L', '2003-01-01', 'password'),
+           ('CrazyBull', '0000-00-00', 'password'),
+           ('Knuckles', '0000-00-00', 'password'),
+           ('Fisheye', '0000-00-00', 'password'),
+           ('Dooming', '0000-00-00', 'password'),
+           ('Raptor', '0000-00-00', 'password'),
+           ('Superboy', '0000-00-00', 'password'),
+           ('Mad Dog', '0000-00-00', 'password'),
+           ('Blonde', '0000-00-00', 'password');
            
 INSERT INTO scoreboard (id_players, time, score)
-	VALUES (1, '2021-02-12 09:03:09', 20),
-		   (2, '2021-06-11 16:22:29', 11);
+	VALUES (1, '2022-03-08 16:47:04', 20),
+		   (2, '2022-03-12 00:16:45', 18),
+           (3, '2022-02-24 19:31:47', 4),
+           (4, '2022-05-11 19:57:07', 16),
+           (5, '2022-05-03 04:39:52', 4),
+           (6, '2022-03-03 12:17:18', 10),
+           (7, '2022-03-30 07:48:20', 12),
+           (8, '2022-04-25 05:07:25', 2),
+           (9, '2022-05-25 17:15:04', 8),
+           (10, '2022-03-18 09:10:16', 16);
 		   
-
-/*	-- Dummy data for testing
-	insert into players (username, birthdate, password) values ('shamments0', '2000-11-28', 'pIYDD7sio');
-	insert into players (username, birthdate, password) values ('kstangroom1', '2000-09-24', 'h9U9o6');
-	insert into players (username, birthdate, password) values ('jberthome2', '2001-06-12', '5f5luT');
-	insert into players (username, birthdate, password) values ('bbradbrook3', '2002-03-18', 'rOcMJT8Pyan');
-	insert into players (username, birthdate, password) values ('wpolson4', '2003-07-15', 'ZRCb15OumJHq');
-	insert into players (username, birthdate, password) values ('dsinnock5', '2001-09-27', 'S8S6WwHBi');
-	insert into players (username, birthdate, password) values ('stinkler6', '2000-09-05', 'bS3woXO');
-	insert into players (username, birthdate, password) values ('dcorderoy7', '2001-03-17', 'QDMGgHo');
-	insert into players (username, birthdate, password) values ('zsamwell8', '2002-07-05', '2ZFhYKn8H4A9');
-	insert into players (username, birthdate, password) values ('gbreffitt9', '2000-01-22', 'wamiQKNE8h');
-
-	insert into scoreboard (id_players, time, score) values (7, '2021-02-12 09:03:09', 21);
-	insert into scoreboard (id_players, time, score) values (9, '2021-09-30 20:10:41', 16);
-	insert into scoreboard (id_players, time, score) values (1, '2021-03-02 05:46:20', 18);
-	insert into scoreboard (id_players, time, score) values (3, '2021-06-11 16:22:29', 11);
-	insert into scoreboard (id_players, time, score) values (10, '2021-12-25 22:14:46', 15);
-	insert into scoreboard (id_players, time, score) values (4, '2021-11-14 07:37:55', 11);
-	insert into scoreboard (id_players, time, score) values (9, '2021-06-09 19:26:11', 20);
-	insert into scoreboard (id_players, time, score) values (7, '2022-01-03 07:48:28', 18);
-	insert into scoreboard (id_players, time, score) values (7, '2021-01-23 20:34:32', 17);
-	insert into scoreboard (id_players, time, score) values (3, '2021-04-10 11:47:29', 18); */
-    
-    
-    
