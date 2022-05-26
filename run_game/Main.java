@@ -1,11 +1,15 @@
 package run_game;
 
-import java.sql.SQLException;
 import main_menu.Menu;
-
 public class Main {
-    public static void main(String[] args) throws SQLException, InterruptedException {
+    public static void main(String[] args) {
         Menu menu = new Menu();
-        menu.mainMenu();
+        try {
+            menu.mainMenu();
+        } 
+        catch (Exception e) {
+            System.out.println("Exeption main: " + e);
+            // e.printStackTrace();
+        }
     }
 }

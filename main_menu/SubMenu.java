@@ -1,11 +1,13 @@
 package main_menu;
 
 import database_connector.*;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SubMenu {
-    void manageAccount() {
-        String[] subMenu = {
+    public void manageAccount() {
+        String[] options = {
             " ",
             "   Manage Account",
             "-------------------",
@@ -16,21 +18,20 @@ public class SubMenu {
             " ",
             " "
         };
-        for (String i : subMenu) {
-            System.out.println(i);
-        }
-
         int option;
+        for (String subMenu : options) {
+            System.out.println(subMenu);
+        }
         System.out.print("Choose your option: ");
         Scanner answer = new Scanner(System.in);
-        //Menu i = new Menu();
         try {
             option = answer.nextInt();
             switch (option) {
                 case 1:
-                    System.out.println("Work in progress!!");
                     userData();
                     Menu.enterReturn();
+                    // Menu i = new Menu(); //NoElement test
+                    // i.mainMenu();
                     break;
                 case 2:
                     System.out.println("Work in progress!!");
@@ -47,8 +48,15 @@ public class SubMenu {
                     break;
             }
             
-        } catch (Exception e) {
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Exeption: " + e);
             Menu.menuExeption();
+            manageAccount();
+        }
+        catch (Exception e) {
+            System.out.println("Exeption in subMenu: " + e);
+            Menu.enterReturn();
         }
     }
 
@@ -83,11 +91,12 @@ public class SubMenu {
     
             JDBC data = new JDBC();
             data.insertUsers(username, birthdate, password);
-    
-        } catch (Exception e) {
-            System.out.println("Please try again.");
+        }
+        catch (Exception e) {
+            System.out.println("Exeption: " + e.getMessage());
         }
     }
+
     static void lostAcc() {
         String[] message = {
             " ",
