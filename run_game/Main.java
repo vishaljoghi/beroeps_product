@@ -8,7 +8,7 @@ public class Main {
             menu.mainMenu();
         } 
         catch (Exception e) {
-            System.out.println("Exeption main: " + e);
+            System.out.println("Exeption in main: " + e);
             // e.printStackTrace();
         }
     }
