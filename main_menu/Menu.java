@@ -75,7 +75,8 @@ public class Menu {
     static void printScoreboard() throws SQLException {
         String[] scoreboard = {
             " ",
-            "  ~ Leaderboard ~"
+            "  ~ Leaderboard ~",
+            " "
         };
         for (String i : scoreboard) {
             System.out.println(i);
@@ -182,5 +183,6 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
+        // scan.close();
     }
 }
