@@ -2,6 +2,7 @@ package main_menu;
 
 import database_connector.*;
 
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,13 +29,16 @@ public class SubMenu {
             option = answer.nextInt();
             switch (option) {
                 case 1:
-                    userData();
+                    enterCred();
                     Menu.enterReturn();
+                    manageAccount();
                     // Menu i = new Menu(); //NoElement test
                     // i.mainMenu();
                     break;
                 case 2:
                     System.out.println("Work in progress!!");
+                    getCred();
+                    editCred();
                     Menu.enterReturn();
                     manageAccount();
                     break;
@@ -60,40 +64,98 @@ public class SubMenu {
         }
     }
 
-    public static void userData() {
-        try (Scanner userData = new Scanner(System.in)) {
-            String[] i = {
-                "Usernames need to be unique,",
-                "so be creative.",
-                "Username: ",
-                "Please use the following",
-                "  format: yyyy-mm-dd",
-                "Birthdate: ",
-                "Tips for making a stong password:",
-                "use Caps, Numbers & Symbols.",
-                "Password: ",
-                " "
-            };
+    public static void enterCred() {
+        Scanner userCred = new Scanner(System.in);
+        JDBC cred = new JDBC();
+        String[] i = {
+            "Usernames need to be unique,",
+            "so be creative.",
+            "Username: ",
+            "Please use the following",
+            "  format: yyyy-mm-dd",
+            "Birthdate: ",
+            "Tips for making a stong password:",
+            "use Caps, Numbers & Symbols.",
+            "Password: ",
+            " "
+        };
+        try {
             System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
             System.out.print(i[0] + "\r\n" + i[1] + "\r\n" + i[9] + "\r\n" 
                             + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[2]);
-            String username = userData.nextLine();
+            String username = userCred.nextLine();
 
             System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
             System.out.print(i[3] + "\r\n" + i[4] + "\r\n" + i[9] + "\r\n" 
                             + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[5]);
-            String birthdate = userData.nextLine();
+            String birthdate = userCred.nextLine();
             
             System.out.println(i[9] + "\r\n" + i[9] + "\r\n" +i[9]);
             System.out.print(i[6] + "\r\n" + i[7] + "\r\n" + i[9] + "\r\n" 
                             + i[9] + "\r\n" + i[9] + "\r\n" + i[9] + i[8]);
-            String password = userData.nextLine();
+            String password = userCred.nextLine();
     
-            JDBC data = new JDBC();
-            data.insertUsers(username, birthdate, password);
+            cred.insertUsers(username, birthdate, password);
         }
         catch (Exception e) {
-            System.out.println("Exeption: " + e.getMessage());
+            System.out.println("Exeption in submenu.enterData: " + e);
+        }
+    }
+
+    public void getCred(/*String getUsername, String getPassword*/) {
+        Scanner userCred = new Scanner(System.in);
+        JDBC cred = new JDBC();
+        String[] i = {
+            "Username: ",
+            "Password: ",
+            "login succesfull",
+            "Incorrect login credentials.",
+            "Please try again.",
+            " "
+        };
+        try {
+            System.out.println(i[0]);
+            String username = userCred.nextLine();
+            System.out.println(i[1]);
+            String password = userCred.nextLine();
+
+            cred.getUser(username, password);
+
+            // if (username.equals(getUsername) && password.equals(getPassword)) {
+            //     System.out.println("login succesfull");
+            //     Menu.enterReturn();
+            // }
+            // else {
+            //     System.out.println("Incorrect login credentials." + "/r/n" + " " + "/r/n" + "Please try again.");
+            // }
+        }
+        catch (Exception e) {
+            System.out.println("Exeption in subMenu.getCred: " + e);
+        }
+    }
+
+    public void editCred() {
+        Scanner userCred = new Scanner(System.in);
+        JDBC cred = new JDBC();
+        String[] i = {
+            "New username: ",
+            "New birthdate: ",
+            "New password: "
+        };
+        try {
+            System.out.println(i[0]);
+            String newUsername = userCred.nextLine();
+            System.out.println(i[1]);
+            String newBirthdate = userCred.nextLine();
+            System.out.println(i[2]);
+            String newPassword = userCred.nextLine();
+            String username = "lo";
+
+            cred.editUser(newUsername, newBirthdate, newPassword, username);
+        }
+        catch (SQLException e) {
+            System.out.println("exeption in subMenu.editData: " + e);
+            // e.printStackTrace();
         }
     }
 
