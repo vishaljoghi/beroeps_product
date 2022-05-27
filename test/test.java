@@ -1,12 +1,30 @@
 package test;
 
-import java.sql.SQLException;
-
-import database_connector.JDBC;
 import main_menu.SubMenu;
+
+// import java.sql.SQLException;
+
+// import database_connector.JDBC;
+// import main_menu.SubMenu;
+// import game_code.gameCode;
 
 public class test {
     public static void main(String[] args) {
+
+        SubMenu i = new SubMenu();
+        i.getCred();
+
+        // SubMenu i = new SubMenu();
+        // i.getCred();
+
+        // System.out.println("\u22A2");
+
+        // JDBC i = new JDBC();
+        // i.editUser();
+
+        // iͫmͤpͫoͦsͬʸible
+
+        // gameCode.shuffle();
 
         // int[][] i = {{43,43,434,53},
         //              {45,23423,5,54,54},
@@ -19,14 +37,14 @@ public class test {
         // System.out.println(i[0][0]);
 
         // // SubMenu i = new SubMenu();
-        SubMenu.userData();
+        // SubMenu.userData();
 
 
     //     JDBC i = new JDBC();
     //     try {
     //         i.insertUsers();
     //     } catch (SQLException e) {
-    //         // TODO Auto-generated catch block
+    //         // print
     //         e.printStackTrace();
     //     }
         
