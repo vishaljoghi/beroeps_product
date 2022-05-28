@@ -1,3 +1,1 @@
 It's still a work in progress...
-
-Adjust terminal size right under line 23 for best user expierience.
