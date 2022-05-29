@@ -1,6 +1,9 @@
 package test;
 
-import main_menu.SubMenu;
+// import java.sql.SQLException;
+
+// import database_connector.JDBC;
+// import main_menu.LoginMenu;
 
 // import java.sql.SQLException;
 
@@ -11,8 +14,15 @@ import main_menu.SubMenu;
 public class test {
     public static void main(String[] args) {
 
-        SubMenu i = new SubMenu();
-        i.getCred();
+        // JDBC o = new JDBC();
+        // try {
+        //     o.getUser();
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        // }
+
+        // LoginMenu i = new LoginMenu();
+        // i.loginMenu();
 
         // SubMenu i = new SubMenu();
         // i.getCred();

@@ -1,15 +1,10 @@
 package run_game;
 
-import main_menu.Menu;
+import main_menu.LoginMenu;
+
 public class Main {
     public static void main(String[] args) {
-        Menu menu = new Menu();
-        try {
-            menu.mainMenu();
-        } 
-        catch (Exception e) {
-            System.out.println("Exeption in main: " + e);
-            // e.printStackTrace();
-        }
+        LoginMenu i = new LoginMenu();
+        i.loginMenu();
     }
 }

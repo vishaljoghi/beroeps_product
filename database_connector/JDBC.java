@@ -2,80 +2,74 @@ package database_connector;
 
 import java.sql.*;
 
+import main_menu.LoginMenu;
 import main_menu.Menu;
+// import main_menu.SubMenu;
 import main_menu.SubMenu;
 
 public class JDBC {
-    public void getUser(String username, String password) throws SQLException {
+    public void getUser() throws SQLException {
         Connection conn = getConnection();
-        SubMenu cred = new SubMenu();
+        LoginMenu l = new LoginMenu();
+        l.getCred();
         try {
             Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("SELECT username, password FROM players "
-                        + "WHERE username = '" + username + "' AND password = '" + password + "';");
+            + "WHERE username = '" + LoginMenu.getUsername() + "' AND password = '" + LoginMenu.getPassword() + "';");
             
             while (results.next()) {
-                String getUsername = results.getString("username");
-                // String getBirthdate = results.getString("birthdate");
-                String getPassword = results.getString("password");
-
-                // cred.getCred(getUsername, getPassword);
-
-                if (username.equals(getUsername) && password.equals(getPassword)) {
-                    System.out.println("login succesfull");
-                    Menu.enterReturn();
-                }
-                else {
-                    System.out.println("Incorrect login credentials.");
-                    Menu.enterReturn();
-                }
+                LoginMenu.setDbUsername(results.getString("username"));
+                // cred.setBirthdate(results.getString("birthdate"));
+                LoginMenu.setDbPassword(results.getString("password"));
+            }
+            if (LoginMenu.getUsername().equals(LoginMenu.getDbUsername()) && LoginMenu.getPassword().equals(LoginMenu.getDbPassword())) {
+                System.out.println("\r\n" + "\r\n" + "Login succesfull" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
+                Menu.enterContinue();
+            }
+            else {
+                System.out.println("\r\n" + "\r\n" + "Incorrect login credentials." + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
+                Menu.enterReturn();
+                l.loginMenu();
             }
         }
         catch (Exception e) {
-            System.out.println();
+            System.out.println("Exeption in JDBC.getUser: " + e);
         }
         conn.close();
     }
 
-    public void insertUsers(String username, String birthdate, String password) throws SQLException {
+    public void insertUsers() throws SQLException {
         Connection conn = getConnection();
+        LoginMenu cred = new LoginMenu();
+        cred.enterCred();
         try {
             Statement statement = conn.createStatement();
-            // Menu dat = new Menu();
-            // Menu.userData();
-            // String password = "h345433u";
-            // String username = "wfd5434";
-            // String birthdate = "2000-01-01";
             String query = ("INSERT INTO players (username, birthdate, password) "
-                + "VALUES ('"+ username + "', '" + birthdate + "', '" + password +"');");
+            + "VALUES ('"+ LoginMenu.getDbUsername() + "', '" + LoginMenu.getDbBirthdate() + "', '" + LoginMenu.getDbPassword() +"');");
             statement.executeUpdate(query);
-            System.out.println("Registration successful.");
+            System.out.println("\r\n"+ "\r\n" + "Registration successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
         }
         catch (Exception e) {
-            System.out.println();
-            System.out.println("Please try another username.");
+            System.out.println("\r\n" + "Please try another username.");
         }
         conn.close();
     }
 
-    public void editUser(String newUsername, String newBirthdate, String newPassword, String username) throws SQLException {
+    public void editUser() throws SQLException {
         Connection conn = getConnection();
+        SubMenu s = new SubMenu();
+        s.editCred();
         try {
             Statement statement = conn.createStatement();
-            // String newUsername = "_MOW_";
-            // String newUsername = "TestUserEdit";
-            // String newBirthdate = "0000-00-00";
-            // String newPassword = "PaswEdit";
-            // String username = "TestUserEdit";
-            // String username = "_MOW_";
-            String query = ("UPDATE players SET username = '" + newUsername + "', birthdate = '" + newBirthdate 
-                                + "', password = '" + newPassword + "' WHERE username = '" + username + "'");
+            String query = ("UPDATE players SET username = '" + LoginMenu.getDbUsername() + "', birthdate = '" + LoginMenu.getDbBirthdate() 
+                                + "', password = '" + LoginMenu.getDbPassword() + "' WHERE username = '" + LoginMenu.getUsername() + "'");
             statement.executeUpdate(query);
-            System.out.println("Change successful.");
+            System.out.println("\r\n"+ "\r\n" + "Change successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
+            Menu.enterContinue();
         }
         catch (Exception e) {
             System.out.println(e);
-            System.out.println("Please try another username.");
+            System.out.println("\r\n" + "Please try another username.");
         }
         conn.close();
     }
