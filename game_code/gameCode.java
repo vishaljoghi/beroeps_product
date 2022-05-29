@@ -2,49 +2,21 @@ package game_code;
 
 import java.util.Scanner;
 
-// import java.util.Random;
-
-// import java.util.Random;
-// import java.util.Scanner;
+import main_menu.Menu;
 
 public class gameCode {
-
-    // static String[][] cardsUp = new String[4][5];
-    // static boolean[][] cardsDown = new boolean[4][5];
-
-    // public static void printBord() {
-    //     for (int r = 0; r < 4; r++) {
-    //         for (int c = 0; c < 5; c++) {
-    //             cardsDown[r][c] = false;
-    //         }
-    //     }
-    //     cardsUp = shuffle();
-    // }
-
-    // public static String[][] shuffle() {
-    //     String letters[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-    //                         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
-    //     String cardsUp[][] = new String[4][5];
-    //     Random random =  new Random();
-    //     int temp, t;
-    //     for (int i = 0; i <= 24; i++) {
-    //         for (x = 0; x < 20; x++) {
-    //             t = random.next
-    //         }
-    //     }
-    //     return cards;
-    // }
-
     static boolean[][] down = new boolean[4][5];
     static String[][] letters = {{"A", "B", "C", "D", "E"},
                                  {"F", "G", "H", "I", "J"},
                                  {"A", "B", "C", "D", "E"},
                                  {"F", "G", "H", "I", "J"}
     };
+    static int lives = 10;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         displayBoard();
         runGame(down, letters);
+        // setlives(lives =  10);
     }
 
     public static void displayBoard() {
@@ -59,8 +31,8 @@ public class gameCode {
                 letters[r1][c1] = temp;
             }
         }
-        System.out.println("10| 1 2 3 4 5");
-        System.out.println("--+-----------");
+        System.out.println("  | 1 2 3 4 5" + "     lives: " + lives);
+        System.out.println("--+-----------" + "    score: " + "--");
         for (int r = 0; r < letters.length; r++) {
             System.out.print((r + 1) + " | ");
             for (int c = 0; c < letters[r].length; c++) {
@@ -77,10 +49,10 @@ public class gameCode {
         System.out.println();
     }
 
-    public static void runGame(boolean[][] down, String[][] letters) {
+    public static void runGame(boolean[][] down, String[][] letters) throws InterruptedException {
         Scanner scan = new Scanner(System.in);
         int totalDown = 20;
-        while (totalDown > 0) {
+        while (totalDown > 0 && lives > 0) {
             displayBoard();
             System.out.print("cord: ");
             String c1 = scan.next();
@@ -98,6 +70,12 @@ public class gameCode {
                 down[c1x][c1y] = true;
                 down[c2x][c2y] = true;
                 totalDown -= 2;
+            }
+            else {
+                lives -= 1;
+                System.out.println("You lose!!");
+                Menu m = new Menu();
+                m.mainMenu();
             }
         }
         displayBoard();
