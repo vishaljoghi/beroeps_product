@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import database_connector.JDBC;
+import game_code.gameCode;
 
 public class Menu {
     public void mainMenu() throws InterruptedException {
@@ -59,14 +60,9 @@ public class Menu {
             }
         }
     }
-    static void playGame () {
-        String[] message = {
-            "Coming soon..."
-        };
-        for (String i : message) {
-            System.out.println(i);
-        }
-        enterReturn();
+    static void playGame () throws InterruptedException {
+        gameCode g = new gameCode();
+        g.game();
     }
 
     static void printScoreboard() throws SQLException {
