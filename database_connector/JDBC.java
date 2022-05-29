@@ -79,7 +79,7 @@ public class JDBC {
         try {
             Statement statement = conn.createStatement();
             ResultSet results =  statement.executeQuery("SELECT username, score FROM scoreboard " 
-                            + "INNER JOIN players ON scoreboard.id_players=players.id_players LIMIT 10;");
+                            + "INNER JOIN players ON scoreboard.id_players=players.id_players ORDER BY score DESC LIMIT 10;");
 
             while (results.next()) {
                 String username = results.getString("username");
