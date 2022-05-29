@@ -29,7 +29,8 @@ INSERT INTO players (username, birthdate, password)
            ('Raptor', '0000-00-00', 'password'),
            ('Superboy', '0000-00-00', 'password'),
            ('Mad Dog', '0000-00-00', 'password'),
-           ('Blonde', '0000-00-00', 'password');
+           ('Blonde', '0000-00-00', 'password'),
+           ('user', '0000-00-00', 'user');
            
 INSERT INTO scoreboard (id_players, time, score)
 	VALUES (1, '2022-03-08 16:47:04', 20),
