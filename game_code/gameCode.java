@@ -1,5 +1,7 @@
 package game_code;
 
+import java.util.Scanner;
+
 // import java.util.Random;
 
 // import java.util.Random;
@@ -42,6 +44,7 @@ public class gameCode {
 
     public static void main(String[] args) {
         displayBoard();
+        runGame(down, letters);
     }
 
     public static void displayBoard() {
@@ -75,9 +78,29 @@ public class gameCode {
     }
 
     public static void runGame(boolean[][] down, String[][] letters) {
+        Scanner scan = new Scanner(System.in);
         int totalDown = 20;
         while (totalDown > 0) {
-            
+            displayBoard();
+            System.out.print("cord: ");
+            String c1 = scan.next();
+            int c1x = Integer.valueOf(c1.substring(0, 1))-1;
+            int c1y = Integer.valueOf(c1.substring(1, 2))-1;
+            System.out.println(letters[c1x][c1y]);
+
+            System.out.print("cord: ");
+            String c2 = scan.next();
+            int c2x = Integer.valueOf(c2.substring(0, 1))-1;
+            int c2y = Integer.valueOf(c2.substring(1, 2))-1;
+            System.out.println(letters[c2x][c2y]);
+            if (letters[c1x][c1y] == letters[c2x][c2y]) {
+                System.out.println("You found a match");
+                down[c1x][c1y] = true;
+                down[c2x][c2y] = true;
+                totalDown -= 2;
+            }
         }
+        displayBoard();
+        System.out.println("You win");
     }
 }
