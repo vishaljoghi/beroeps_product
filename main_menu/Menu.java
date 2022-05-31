@@ -9,6 +9,7 @@ import game_code.gameCode;
 public class Menu {
     public void mainMenu() throws InterruptedException {
         String[] menu = {
+            " --------------",
             "      Menu ",
             " --------------",
             "1. Play as " + LoginMenu.getUsername(),
@@ -29,7 +30,8 @@ public class Menu {
                 option = answer.nextInt();
                 switch (option) {
                     case 1:
-                        playGame();
+                        gameCode g = new gameCode();
+                        g.game();
                         break;
                     case 2:
                         SubMenu a = new SubMenu();
@@ -59,10 +61,6 @@ public class Menu {
                 enterReturn();
             }
         }
-    }
-    static void playGame () throws InterruptedException {
-        gameCode g = new gameCode();
-        g.game();
     }
 
     static void printScoreboard() throws SQLException {
