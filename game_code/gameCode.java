@@ -15,6 +15,7 @@ public class gameCode {
     }
 
     static boolean[][] down = new boolean[4][5];
+    static String[][] open = new String[4][5];
     static String[][] letters = {{"A", "B", "C", "D", "E"},
                                  {"F", "G", "H", "I", "J"},
                                  {"A", "B", "C", "D", "E"},
@@ -50,7 +51,7 @@ public class gameCode {
     }
 
     public static void displayBoard() {
-        System.out.println("\r\n");
+        System.out.println("\r\n" + "    ~ Memory Imposible ~" + "\r\n");
         System.out.println("  | 1 2 3 4 5" + "     lives: " + getLives());
         System.out.println("--+-----------" + "    score: " + getScore());
         for (int r = 0; r < letters.length; r++) {
@@ -78,6 +79,11 @@ public class gameCode {
             int c1x = Integer.valueOf(c1.substring(0, 1))-1;
             int c1y = Integer.valueOf(c1.substring(1, 2))-1;
             // System.out.println(" |" + letters[c1x][c1y] + "|");
+            if (letters[c1x][c1y] == open[c1x][c1y]) {
+                System.out.println("Can't open already open card!!");
+                Menu.enterContinue();
+                runGame();
+            }
             down[c1x][c1y] = true;
             displayBoard();
 
@@ -86,6 +92,11 @@ public class gameCode {
             int c2x = Integer.valueOf(c2.substring(0, 1))-1;
             int c2y = Integer.valueOf(c2.substring(1, 2))-1;
             // System.out.println(" |" + letters[c2x][c2y] + "|");
+            if (letters[c2x][c2y] == open[c2x][c2y]) {
+                System.out.println("Can't open already open card!!");
+                Menu.enterContinue();
+                runGame();
+            }
             down[c2x][c2y] = true;
             displayBoard();
             Thread.sleep(1000);
@@ -94,6 +105,8 @@ public class gameCode {
                 Thread.sleep(1000);
                 down[c1x][c1y] = true;
                 down[c2x][c2y] = true;
+                open[c1x][c1y] = letters[c1x][c1y];
+                open[c2x][c2y] = letters[c2x][c2y];
                 totalDown -= 2;
                 setScore(score += 2);
             }
@@ -111,6 +124,7 @@ public class gameCode {
         }
         else {
             System.out.println("You win!!");
+            System.out.println("You're score: " + getScore());
             Menu.enterContinue();
         }
         displayBoard();
