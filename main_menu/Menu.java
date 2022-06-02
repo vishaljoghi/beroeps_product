@@ -1,8 +1,9 @@
 package main_menu;
 
-import java.sql.SQLException;
 import java.util.InputMismatchException;
+import java.sql.SQLException;
 import java.util.Scanner;
+
 import database_connector.JDBC;
 import game_code.gameCode;
 
@@ -49,13 +50,9 @@ public class Menu {
                 }
             }
             catch (InputMismatchException e) {
-                System.out.println("Exeption: " + e);
+                System.out.println("InputMismatchException in mainMenu: " + e);
                 Animations.menuExeption();
             }
-            // catch (NoSuchElementException e) {
-            //     System.out.println("Exeption: " + e);  //NoElement test
-            //     exitMenu();
-            // }
             catch (Exception e) {
                 System.out.println("Exeption in mainMenu: " + e);
                 enterReturn();
@@ -63,7 +60,7 @@ public class Menu {
         }
     }
 
-    static void printScoreboard() throws SQLException {
+    private void printScoreboard() throws SQLException {
         String[] scoreboard = {
             " ",
             "  ~ Leaderboard ~",
@@ -72,12 +69,12 @@ public class Menu {
         for (String i : scoreboard) {
             System.out.println(i);
         }
-        JDBC conn = new JDBC();
-        conn.printUsers();
+        JDBC j = new JDBC();
+        j.printUsers();
         enterReturn();
     }
 
-    static void printCredits() {
+    private void printCredits() {
         String[] credits = {
             " ",
             "        ~ Developers ~        ",
