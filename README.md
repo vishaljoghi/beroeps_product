@@ -6,3 +6,4 @@ to create the database needed for this application.
 For the best user expierience, adjust terminal height so it only displays 9 lines.
 
 ![](resources/ratio.png)
+<!-- See picture in resourrces folder. -->
