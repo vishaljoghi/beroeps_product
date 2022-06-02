@@ -1,6 +1,9 @@
 package main_menu;
 
+import com.mysql.cj.jdbc.exceptions.MysqlDataTruncation;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Scanner;
+
 import database_connector.JDBC;
 
 public class LoginMenu {
@@ -22,18 +25,17 @@ public class LoginMenu {
             }
             System.out.print("Your option: ");
             Scanner answer = new Scanner(System.in);
-            JDBC j = new JDBC();
             try {
                 option = answer.nextInt();
                 switch (option) {
                     case 1:
-                        j.getUser();
+                        getCred();
                         Animations.welcomeMessage();
                         Menu m = new Menu();
                         m.mainMenu();
                         break;
                     case 2:
-                        j.insertUsers();
+                        enterCred();
                         Menu.enterReturn();
                         break;
                     case 3:
@@ -71,6 +73,20 @@ public class LoginMenu {
             setUsername(userCred.nextLine());
             System.out.print("\r\n" + i[1]);
             setPassword(userCred.nextLine());
+
+            JDBC j = new JDBC();
+            j.getUser();
+
+            if (LoginMenu.getUsername().equals(LoginMenu.getDbUsername()) && LoginMenu.getPassword().equals(LoginMenu.getDbPassword())) {
+                System.out.println("\r\n" + "\r\n" + "Login succesfull" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
+                setBirthdate(getDbBirthdate());
+                Menu.enterContinue();
+            }
+            else {
+                System.out.println("\r\n" + "\r\n" + "Incorrect login credentials." + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
+                Menu.enterReturn();
+                loginMenu();
+            }
         }
         catch (Exception e) {
             System.out.println("Exeption in loginMenu.getCred: " + e);
@@ -89,21 +105,34 @@ public class LoginMenu {
             "Tips for making a stong password:",
             "use Caps, Numbers & Symbols.",
             "Password: ",
-            " "
+            "Max 15 characters."
         };
         try {
-            System.out.print("\r\n" + "\r\n" + "\r\n" + i[0] + "\r\n" + i[1] 
-                            + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[2]);
+            System.out.print("\r\n" + "\r\n" + i[0] + "\r\n" + i[1] + "\r\n" + i[9] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[2]);
             setDbUsername(userCred.nextLine());
-            System.out.print("\r\n" + "\r\n" + "\r\n" + i[3] + "\r\n" + i[4] 
-                            + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[5]);
+            System.out.print("\r\n" + "\r\n" + "\r\n" + "\r\n" + i[3] + "\r\n" + i[4] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[5]);
             setDbBirthdate(userCred.nextLine());
-            System.out.print("\r\n" + "\r\n" + "\r\n" + i[6] + "\r\n" + i[7] 
-                            + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[8]);
+            System.out.print("\r\n" + "\r\n" + i[6] + "\r\n" + i[7] + "\r\n" + i[9] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[8]);
             setDbPassword(userCred.nextLine());
+
+            JDBC j = new JDBC();
+            j.insertUsers();
+
+            System.out.println("\r\n"+ "\r\n" + "Registration successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
+        }
+        catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("\r\n" + "Please try another username." + "\r\n");
+            Menu.enterContinue();
+            enterCred();
+        }
+        catch (MysqlDataTruncation e) {
+            System.out.println("\r\n" + "\r\n" + "Incorrect date or format." + "\r\n" 
+                    + "Format: yyyy-mm-dd" + "\r\n" + "   e.g: 2000-12-30" + "\r\n");
+            Menu.enterContinue();
+            enterCred();
         }
         catch (Exception e) {
-            System.out.println("\r\n" + "Exeption in submenu.enterData: " + e);
+            System.out.println("Exeption in LoginMenu.enterCred: " + e);
         }
     }
     
@@ -154,6 +183,7 @@ public class LoginMenu {
     private static String dbUsername;
     private static String dbBirthdate;
     private static String dbPassword;
+    private static String dbPlayerId;
 
     public static String getDbUsername() {
         return dbUsername;
@@ -177,5 +207,13 @@ public class LoginMenu {
 
     public static void setDbPassword(String newDbPassword) {
         dbPassword = newDbPassword;
+    }
+
+    public static String getDbPlayerId() {
+        return dbPlayerId;
+    }
+
+    public static void setDbPlayerId(String newDbPlayerId) {
+        dbPlayerId = newDbPlayerId;
     }
 }
