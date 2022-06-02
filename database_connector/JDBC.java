@@ -2,75 +2,49 @@ package database_connector;
 
 import java.sql.*;
 
+import game_code.gameCode;
 import main_menu.LoginMenu;
-import main_menu.Menu;
-// import main_menu.SubMenu;
-import main_menu.SubMenu;
 
 public class JDBC {
-    public void getUser() throws SQLException {
+    public void getUser() throws Exception {
         Connection conn = getConnection();
-        LoginMenu l = new LoginMenu();
-        l.getCred();
         try {
             Statement statement = conn.createStatement();
-            ResultSet results = statement.executeQuery("SELECT username, password FROM players "
+            ResultSet results = statement.executeQuery("SELECT id_players, username, birthdate, password FROM players "
             + "WHERE username = '" + LoginMenu.getUsername() + "' AND password = '" + LoginMenu.getPassword() + "';");
             
             while (results.next()) {
+                LoginMenu.setDbPlayerId(results.getString("id_players"));
                 LoginMenu.setDbUsername(results.getString("username"));
-                // cred.setBirthdate(results.getString("birthdate"));
+                LoginMenu.setDbBirthdate(results.getString("birthdate"));
                 LoginMenu.setDbPassword(results.getString("password"));
             }
-            if (LoginMenu.getUsername().equals(LoginMenu.getDbUsername()) && LoginMenu.getPassword().equals(LoginMenu.getDbPassword())) {
-                System.out.println("\r\n" + "\r\n" + "Login succesfull" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
-                Menu.enterContinue();
-            }
-            else {
-                System.out.println("\r\n" + "\r\n" + "Incorrect login credentials." + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
-                Menu.enterReturn();
-                l.loginMenu();
-            }
         }
-        catch (Exception e) {
-            System.out.println("Exeption in JDBC.getUser: " + e);
-        }
+        finally {}
         conn.close();
     }
 
-    public void insertUsers() throws SQLException {
+    public void insertUsers() throws Exception {
         Connection conn = getConnection();
-        LoginMenu cred = new LoginMenu();
-        cred.enterCred();
         try {
             Statement statement = conn.createStatement();
             String query = ("INSERT INTO players (username, birthdate, password) "
             + "VALUES ('"+ LoginMenu.getDbUsername() + "', '" + LoginMenu.getDbBirthdate() + "', '" + LoginMenu.getDbPassword() +"');");
             statement.executeUpdate(query);
-            System.out.println("\r\n"+ "\r\n" + "Registration successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
         }
-        catch (Exception e) {
-            System.out.println("\r\n" + "Please try another username.");
-        }
+        finally {}
         conn.close();
     }
 
-    public void editUser() throws SQLException {
+    public void editUser() throws Exception {
         Connection conn = getConnection();
-        SubMenu s = new SubMenu();
-        s.editCred();
         try {
             Statement statement = conn.createStatement();
             String query = ("UPDATE players SET username = '" + LoginMenu.getDbUsername() + "', birthdate = '" + LoginMenu.getDbBirthdate() 
-                                + "', password = '" + LoginMenu.getDbPassword() + "' WHERE username = '" + LoginMenu.getUsername() + "'");
+                                + "', password = '" + LoginMenu.getDbPassword() + "' WHERE username = '" + LoginMenu.getUsername() + "';");
             statement.executeUpdate(query);
-            System.out.println("\r\n"+ "\r\n" + "Change successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
-            Menu.enterContinue();
         }
-        catch (Exception e) {
-            System.out.println(e);
-            System.out.println("\r\n" + "Please try another username.");
-        }
+        finally {}
         conn.close();
     }
 
@@ -79,7 +53,7 @@ public class JDBC {
         try {
             Statement statement = conn.createStatement();
             ResultSet results =  statement.executeQuery("SELECT username, score FROM scoreboard " 
-                            + "INNER JOIN players ON scoreboard.id_players=players.id_players ORDER BY score DESC LIMIT 10;");
+            + "INNER JOIN players ON scoreboard.id_players=players.id_players ORDER BY score DESC LIMIT 10;");
 
             while (results.next()) {
                 String username = results.getString("username");
@@ -92,6 +66,19 @@ public class JDBC {
             System.out.println("Could not retrieve data from the database " + e.getMessage());
         }
         conn.close();
+    }
+
+    public void insertScore() {
+        Connection conn = getConnection();
+        try {
+            Statement statement = conn.createStatement();
+            String query = ("INSERT INTO scoreboard (id_players, time, score) "
+            + "VALUES (" + LoginMenu.getDbPlayerId() + ", '" + gameCode.getDateTime() + "', " + gameCode.getScore() + ");");
+            statement.executeUpdate(query);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in insertScore: " + e);
+        }
     }
 
     static Connection getConnection() {
