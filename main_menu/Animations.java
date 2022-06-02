@@ -20,18 +20,18 @@ public class Animations {
         String[] memory = {
             " ",
             " ",
+            " ",
             " _ __ ___   ___ _ __ ___   ___  _ __ _   _",
             "| '_ ` _ \\ / _ \\ '_ ` _ \\ / _ \\| '__| | | |",
             "| | | | | |  __/ | | | | | (_) | |  | |_| | ",
             "|_| |_| |_|\\___|_| |_| |_|\\___/|_|   \\__, |",
             "                                     |___/",
-            " ",
             " "
         };
         for (String b : memory) {
             System.out.println(b);
         }
-        Thread.sleep(2000);
+        Thread.sleep(1500);
         String[] impossible = {
             " _                               _ _     _",
             "(_)_ __ ___  _ __   ___  ___ ___(_) |__ | | ___",
@@ -44,7 +44,7 @@ public class Animations {
         for (String c : impossible) {
             System.out.println(c);
         }
-        Thread.sleep(2000);
+        Thread.sleep(1500);
     }
 
     static void menuExeption() {
