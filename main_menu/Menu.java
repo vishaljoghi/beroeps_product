@@ -10,9 +10,8 @@ import game_code.gameCode;
 public class Menu {
     public void mainMenu() throws InterruptedException {
         String[] menu = {
-            " --------------",
             "      Menu ",
-            " --------------",
+            "----------------",
             "1. Play as " + LoginMenu.getUsername(),
             "2. Account",
             "3. Leaderboard",
@@ -29,6 +28,7 @@ public class Menu {
             Scanner answer = new Scanner(System.in);
             try {
                 option = answer.nextInt();
+                Animations.border();
                 switch (option) {
                     case 1:
                         gameCode g = new gameCode();
@@ -62,7 +62,6 @@ public class Menu {
 
     private void printScoreboard() throws SQLException {
         String[] scoreboard = {
-            " ",
             "  ~ Leaderboard ~",
             " "
         };
@@ -71,12 +70,12 @@ public class Menu {
         }
         JDBC j = new JDBC();
         j.printUsers();
+        System.out.println();
         enterReturn();
     }
 
     private void printCredits() {
         String[] credits = {
-            " ",
             "        ~ Developers ~        ",
             "                              ",
             "Cheung  Shahrukh   SE/1121/062",
@@ -107,6 +106,7 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to return.");
         scan.nextLine();
+        Animations.border();
         // scan.close();
     }
 
@@ -114,6 +114,7 @@ public class Menu {
         Scanner scan = new Scanner(System.in);
         System.out.print("Press 'Enter' to continue.");
         scan.nextLine();
+        Animations.border();
         // scan.close();
     }
 }

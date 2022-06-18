@@ -1,5 +1,12 @@
 package test;
 
+import javax.sound.sampled.SourceDataLine;
+
+// import java.time.LocalDateTime;
+// import java.time.format.DateTimeFormatter;
+
+// import game_code.gameCode;
+
 // import java.sql.SQLException;
 
 // import database_connector.JDBC;
@@ -13,37 +20,53 @@ package test;
 
 public class test {
     public static void main(String[] args) {
-
-        double[][] matrixLeft = {{1,5,2,8,4,70,55,80},{3,7,4,2,6,60,30,70}};
-        double[][] matrixRight = {{8,1,6,4,2,10,40,60},{1,5,2,8,4,70,50,80},{3,7,4,2,6,60,30,70}};
-
-        int endOfLoop = matrixLeft.length >  matrixRight.length ? matrixLeft.length : matrixRight.length;
-        for(int i = 0; i < endOfLoop; i++){
-            if(matrixLeft.length > i){
-                printLine(matrixLeft[i]);
-                System.out.print("     ");
-            } else {
-                printBlankLine(matrixLeft[0].length);
-            }
-
-            if(matrixRight.length > i){
-                printLine(matrixRight[i]);
-            }
-            System.out.println();
-        }
+        
     }
+    // public static void main(String[] args) {
+    //     // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss");
+    //     // LocalDateTime localDateTime = LocalDateTime.now();
+    //     gameCode.setDateTime(DateTimeFormatter.ofPattern("YYYY-MM-dd hh:mm:ss").format(LocalDateTime.now()));
 
-    private static void printLine(double[] line){
-        for(double number : line){
-            System.out.print(number + " ");
-        }
-    }
+    //     System.out.println(gameCode.getDateTime());
+    // }
 
-    private static void printBlankLine(int lenght){
-        for(int i=0; i < lenght; i++){
-            System.out.print("     ");
-        }
-    }
+
+
+
+
+
+    // public static void main(String[] args) {
+
+    //     double[][] matrixLeft = {{1,5,2,8,4,70,55,80},{3,7,4,2,6,60,30,70}};
+    //     double[][] matrixRight = {{8,1,6,4,2,10,40,60},{1,5,2,8,4,70,50,80},{3,7,4,2,6,60,30,70}};
+
+    //     int endOfLoop = matrixLeft.length >  matrixRight.length ? matrixLeft.length : matrixRight.length;
+    //     for(int i = 0; i < endOfLoop; i++){
+    //         if(matrixLeft.length > i){
+    //             printLine(matrixLeft[i]);
+    //             System.out.print("     ");
+    //         } else {
+    //             printBlankLine(matrixLeft[0].length);
+    //         }
+
+    //         if(matrixRight.length > i){
+    //             printLine(matrixRight[i]);
+    //         }
+    //         System.out.println();
+    //     }
+    // }
+
+    // private static void printLine(double[] line){
+    //     for(double number : line){
+    //         System.out.print(number + " ");
+    //     }
+    // }
+
+    // private static void printBlankLine(int lenght){
+    //     for(int i=0; i < lenght; i++){
+    //         System.out.print("     ");
+    //     }
+    // }
 
 
         // JDBC o = new JDBC();

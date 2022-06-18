@@ -8,10 +8,10 @@ public class gameDemo {
     static boolean upDown[][] = new boolean[4][4];
     static Scanner s = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        setup();
-        game(upDown, cards); // calls the game
-    }
+    // public static void main(String[] args) {
+    //     setup();
+    //     game(upDown, cards); // calls the game
+    // }
 
     //print the board
     public static void setup() {

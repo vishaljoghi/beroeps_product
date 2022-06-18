@@ -9,9 +9,8 @@ import database_connector.JDBC;
 public class SubMenu {
     protected void manageAccount() {
         String[] options = {
-            " ",
-            "   Manage Account",
-            "-------------------",
+            "  Manage Account",
+            "------------------",
             "1. Switch account",
             "2. Create Account",
             "3. Edit Account",
@@ -29,6 +28,7 @@ public class SubMenu {
             LoginMenu l = new LoginMenu();
             try {
                 option = answer.nextInt();
+                Animations.border();
                 switch (option) {
                     case 1:
                         l.getCred();
@@ -50,11 +50,13 @@ public class SubMenu {
             }
             catch (InputMismatchException e) {
                 System.out.println("InputMismatchException in subMenu: " + e);
+                Animations.border();
                 Animations.menuExeption();
                 manageAccount();
             }
             catch (Exception e) {
                 System.out.println("Exeption in subMenu: " + e);
+                Animations.border();
                 Menu.enterReturn();
             }
         }
@@ -64,12 +66,11 @@ public class SubMenu {
     protected void editCred() {
         Scanner userCred = new Scanner(System.in);
         String[] options = {
-            " ",
             "     Account details",
             "-------------------------",
-            "1. Username: " + LoginMenu.getUsername(),
+            "1. Username:  " + LoginMenu.getUsername(),
             "2. Birthdate: " + LoginMenu.getBirthdate(),
-            "3. Password: " + LoginMenu.getPassword(),
+            "3. Password:  " + LoginMenu.getPassword(),
             "4. Return",
             " "
         };
@@ -82,17 +83,19 @@ public class SubMenu {
         JDBC j = new JDBC();
         try {
             option = answer.nextInt();
+            Animations.border();
             switch (option) {
                 case 1:
-                    System.out.print("\r\n" + "New username: ");
+                    System.out.print("New username: ");
                     LoginMenu.setDbUsername(userCred.nextLine());
+                    Animations.border();
                     try {
-                        LoginMenu.setBirthdate(LoginMenu.getDbBirthdate());
-                        LoginMenu.setPassword(LoginMenu.getDbPassword());
+                        LoginMenu.setDbBirthdate(LoginMenu.getBirthdate());
+                        LoginMenu.setDbPassword(LoginMenu.getPassword());
                         j.editUser();
                     }
                     catch (SQLIntegrityConstraintViolationException e) {
-                        System.out.println("\r\n" + "Username already taken." + "\r\n");
+                        System.out.println("Username already taken." + "\r\n");
                         Menu.enterContinue();
                         editCred();
                     }
@@ -104,16 +107,18 @@ public class SubMenu {
                     editCred();
                     break;
                 case 2:
-                    System.out.print("\r\n" + "New birthdate: ");
+                    System.out.print("New birthdate: ");
                     LoginMenu.setDbBirthdate(userCred.nextLine());
+                    Animations.border();
                     try {
-                        LoginMenu.setUsername(LoginMenu.getDbUsername());
-                        LoginMenu.setPassword(LoginMenu.getDbPassword());
+                        LoginMenu.setDbUsername(LoginMenu.getUsername());
+                        LoginMenu.setDbPassword(LoginMenu.getPassword());
                         j.editUser();
                     }
                     catch (Exception e) {
-                        System.out.println("\r\n" + "\r\n" + "Incorrect date or format." + "\r\n" 
-                                + "Format: yyyy-mm-dd" + "\r\n" + "   e.g: 2000-12-30" + "\r\n");
+                        System.out.println("Incorrect date or format." + "\r\n" 
+                                         + "Format: yyyy-mm-dd" + "\r\n" 
+                                         + "   e.g: 2000-12-30" + "\r\n");
                         Menu.enterContinue();
                         editCred();
                     }
@@ -123,9 +128,10 @@ public class SubMenu {
                 case 3:
                     System.out.print("\r\n" + "New password: ");
                     LoginMenu.setDbPassword(userCred.nextLine());
+                    Animations.border();
                     try {
-                        LoginMenu.setUsername(LoginMenu.getDbUsername());
-                        LoginMenu.setBirthdate(LoginMenu.getDbBirthdate());
+                        LoginMenu.setDbUsername(LoginMenu.getUsername());
+                        LoginMenu.setDbBirthdate(LoginMenu.getBirthdate());
                         j.editUser();
                     }
                     finally {}
@@ -134,35 +140,22 @@ public class SubMenu {
                     break;
                 case 4:
                     manageAccount();
+                    Animations.border();
                     break;
             }
         }
         catch (InputMismatchException e) {
-            System.out.println("InputMismatchException in subMenu.editCred: " + e);
+            System.out.println("subMenu.editCred: " + e);
+            Animations.border();
             Animations.menuExeption();
             editCred();
         }
         catch (Exception e) {
-            System.out.println("Exeption in subMenu.editCred: " + e);
+            System.out.println("subMenu.editCred: " + e);
+            Animations.border();
             Menu.enterReturn();
             editCred();
         }
         
     }
-
-    // private void lostAcc() {
-    //     String[] message = {
-    //         " ",
-    //         "       __",
-    //         "  _   / /",
-    //         " (_) | |   Pls make another",
-    //         "  _  | |       account.",
-    //         " (_) | |      ----------",
-    //         "      \\_\\",
-    //         " "
-    //     };
-    //     for (String i : message) {
-    //         System.out.println(i);
-    //     }
-    // }
 }

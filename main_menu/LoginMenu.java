@@ -9,16 +9,16 @@ import database_connector.JDBC;
 public class LoginMenu {
     public void loginMenu() {
         String[] menu = {
-            "  ~ Welcome ~",
-            " ",
+            "   Welcome",
+            "-------------",
             "1. Login",
             "2. Register",
             "3. Help",
             "4. Exit",
-            " ",
             " "
         };
         int option;
+        Animations.border();
         while (true) {
             for (String i : menu) {
             System.out.println(i);
@@ -27,20 +27,16 @@ public class LoginMenu {
             Scanner answer = new Scanner(System.in);
             try {
                 option = answer.nextInt();
+                Animations.border();
                 switch (option) {
                     case 1:
                         getCred();
-                        Animations.welcomeMessage();
-                        Menu m = new Menu();
-                        m.mainMenu();
                         break;
                     case 2:
                         enterCred();
-                        Menu.enterReturn();
                         break;
                     case 3:
                         help();
-                        Menu.enterReturn();
                         break;
                     case 4:
                         Menu.exitMenu();
@@ -49,6 +45,7 @@ public class LoginMenu {
             }
             catch (Exception e) {
                 System.out.println("Exeption loginMenu: " + e);
+                Animations.border();
                 Animations.menuExeption();
                 loginMenu();
             }
@@ -58,29 +55,23 @@ public class LoginMenu {
 
     public void getCred() {
         Scanner userCred = new Scanner(System.in);
-        String[] i = {
-            "Username: ",
-            "Password: ",
-            "login succesfull",
-            "Incorrect login credentials.",
-            "Please try again.",
-            " "
-        };
         try {
-            System.out.println("\r\n" + "\r\n" + "\r\n" 
-                             + "\r\n" + "\r\n" + "\r\n");
-            System.out.print("\r\n" + i[0]);
+            System.out.println("       ~ Login ~" + "\r\n");
+            System.out.print("Username: ");
             setUsername(userCred.nextLine());
-            System.out.print("\r\n" + i[1]);
+            System.out.print("Password: ");
             setPassword(userCred.nextLine());
 
             JDBC j = new JDBC();
             j.getUser();
 
             if (LoginMenu.getUsername().equals(LoginMenu.getDbUsername()) && LoginMenu.getPassword().equals(LoginMenu.getDbPassword())) {
-                System.out.println("\r\n" + "\r\n" + "Login succesfull" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
+                System.out.println("\r\n" + "Login succesfull" + "\r\n");
                 setBirthdate(getDbBirthdate());
                 Menu.enterContinue();
+                Animations.welcomeMessage();
+                Menu m = new Menu();
+                m.mainMenu();
             }
             else {
                 System.out.println("\r\n" + "\r\n" + "Incorrect login credentials." + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n");
@@ -95,43 +86,44 @@ public class LoginMenu {
 
     public void enterCred() {
         Scanner userCred = new Scanner(System.in);
-        String[] i = {
-            "Usernames need to be unique,",
-            "so be creative.",
-            "Username: ",
-            "Please use the following",
-            "  format: yyyy-mm-dd",
-            "Birthdate: ",
-            "Tips for making a stong password:",
-            "use Caps, Numbers & Symbols.",
-            "Password: ",
-            "Max 15 characters."
-        };
         try {
-            System.out.print("\r\n" + "\r\n" + i[0] + "\r\n" + i[1] + "\r\n" + i[9] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[2]);
+            System.out.println("        ~ register ~" + "\r\n");
+            System.out.print("Usernames need to be unique," + "\r\n" 
+                           + "so be creative." + "\r\n" 
+                           + "Max 15 characters." + "\r\n" + "\r\n"
+                           + "Username: ");
             setDbUsername(userCred.nextLine());
-            System.out.print("\r\n" + "\r\n" + "\r\n" + "\r\n" + i[3] + "\r\n" + i[4] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[5]);
+            System.out.print("-----------------------------" + "\r\n" + "\r\n" 
+                           + "Please use the following" + "\r\n" 
+                           + "  format: yyyy-mm-dd" + "\r\n" + "\r\n"
+                           + "Birthdate: ");
             setDbBirthdate(userCred.nextLine());
-            System.out.print("\r\n" + "\r\n" + i[6] + "\r\n" + i[7] + "\r\n" + i[9] + "\r\n" + "\r\n" + "\r\n" + "\r\n" + i[8]);
+            System.out.print("-----------------------------" + "\r\n" + "\r\n" 
+                           + "To make a stong password:" + "\r\n" 
+                           + "use Caps, Numbers & Symbols." + "\r\n" + "\r\n"
+                           + "Password: ");
             setDbPassword(userCred.nextLine());
 
             JDBC j = new JDBC();
             j.insertUsers();
 
-            System.out.println("\r\n"+ "\r\n" + "Registration successful."+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n"+ "\r\n");
+            System.out.println("\r\n" + "Registration successful."+ "\r\n");
+            Menu.enterContinue();
         }
         catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("\r\n" + "Please try another username." + "\r\n");
-            Menu.enterContinue();
-            enterCred();
+            Animations.border();
+            System.out.println("Please try another username." + "\r\n");
+            Menu.enterReturn();
         }
         catch (MysqlDataTruncation e) {
-            System.out.println("\r\n" + "\r\n" + "Incorrect date or format." + "\r\n" 
-                    + "Format: yyyy-mm-dd" + "\r\n" + "   e.g: 2000-12-30" + "\r\n");
-            Menu.enterContinue();
-            enterCred();
+            Animations.border();
+            System.out.println("Incorrect date or format." + "\r\n" 
+                             + "Format: yyyy-mm-dd" + "\r\n" 
+                             + "   e.g: 2000-12-30" + "\r\n");
+            Menu.enterReturn();
         }
         catch (Exception e) {
+            Animations.border();
             System.out.println("Exeption in LoginMenu.enterCred: " + e);
         }
     }
@@ -142,7 +134,7 @@ public class LoginMenu {
             " ",
             "'Login' to continue and play.",
             " ",
-            "'Register' if you do not have an account,",
+            "'Register' to ceate an account,",
             " then login",
             " ",
             " "
@@ -150,6 +142,7 @@ public class LoginMenu {
         for (String i : help) {
             System.out.println(i);
         }
+        Menu.enterReturn();
     }
 
     private static String username;

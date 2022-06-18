@@ -52,12 +52,12 @@ public class JDBC {
         Connection conn = getConnection();
         try {
             Statement statement = conn.createStatement();
-            ResultSet results =  statement.executeQuery("SELECT username, score FROM scoreboard " 
-            + "INNER JOIN players ON scoreboard.id_players=players.id_players ORDER BY score DESC LIMIT 10;");
+            ResultSet results =  statement.executeQuery("SELECT username, MAX(score) FROM scoreboard " 
+            + "INNER JOIN players ON scoreboard.id_players=players.id_players GROUP BY username ORDER BY score DESC LIMIT 10;");
 
             while (results.next()) {
                 String username = results.getString("username");
-                String score = results.getString("score");
+                String score = results.getString("MAX(score)");
                 // System.out.printf("%-14s%-5s\n","Player","Score");
                 System.out.printf("%-16s%-8s\n",username, score);
             }
